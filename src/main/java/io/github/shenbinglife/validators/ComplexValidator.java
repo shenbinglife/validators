@@ -38,6 +38,7 @@ public interface ComplexValidator<T, K> {
      *
      * @param object 被校验的对象
      * @param annotation 被校验对象的注解
+     * @param context 校验环境上下文
      * @return 校验结果，true：校验通过
      */
     boolean validate(T object, K annotation, ValidateContext context);

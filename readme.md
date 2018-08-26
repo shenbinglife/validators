@@ -14,7 +14,7 @@
 3. 增加了`@Each`校验器注解，自动校验数组、集合和Map内的值集合
 
 使用说明： 
-1. 在spring容器中定义`com.trendytech.common.validator.spring.SpringValidatorAdvisor`， 这是校验器的切面拦截功能，会默认拦截所有的标记有`@Validators`的方法或类上面有`@Validators`注解的内部所有方法。
+1. 在spring容器中定义`io.github.shenbinglife.validators.spring.SpringValidatorAdvisor`， 这是校验器的切面拦截功能，会默认拦截所有的标记有`@Validators`的方法或类上面有`@Validators`注解的内部所有方法。
    ```
         @Bean
         public SpringValidatorAdvisor springValidatorAdvisor() {
@@ -23,6 +23,7 @@
     ```
 2. 现在可以使用框架中自带的校验器注解。
     * 在任意方法上标记`@Validators`注解，表明校验该方法运行时的入参。
+    * 在任意类上标记`@Validators`注解，表明校验该类中所有方法运行时的入参。
     * 在任意类上标记`@Validators`注解，表明校验该类中所有方法运行时的入参。
     
     ```
@@ -74,7 +75,7 @@
     
 5. 框架内部可用校验器注解
     * 校验器注解的具体使用方法，可以阅读源代码的api注释文档。
-    * 注意该框架的校验器的包名为`com.trendytech.common.validator.anno.cfg`
+    * 注意该框架的校验器的包名为`io.github.shenbinglife.validators.anno.cfg`
     * 下列校验器注解，默认都**不会**产生校验对象内部字段的功能。如需校验对象内部字段，请使用后文提到的`@ValidateInside`注解。
     ```
         @Blank: 字符串必须为空
@@ -144,7 +145,7 @@
         }
     ```
     
-    2. 实现一个校验器，实现`com.trendytech.common.validator.ComplexValidator`接口， 并且将其注入Spring容器中。
+    2. 实现一个校验器，实现`io.github.shenbinglife.validators.ComplexValidator`接口， 并且将其注入Spring容器中。
     ```
         @Component //spring注解，表示将该对象注入spirng容器内。这样spring启动时，验器注册中心会自动注册该校验器。
         public class StringBlankValidator implements ComplexValidator<String, Blank> {
